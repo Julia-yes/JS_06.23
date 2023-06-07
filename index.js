@@ -1,106 +1,69 @@
-function makeDeepCopy(obj) {
-  if (
-    !obj ||
-    typeof obj !== "object" ||
-    obj instanceof Map ||
-    Array.isArray(obj) ||
-    obj instanceof Set
-  ) {
-    throw new Error();
-  } else {
-    return makeCopyOfObject(obj);
+function customFilter(callback, obj) {
+  if (!callback || typeof callback !== "function") {
+    throw new Error("Invalid argument.");
   }
-
-  function makeCopyOfObject(prop) {
-    if (typeof prop !== "object" || prop === null || prop === undefined) {
-      return prop;
-    }
-    if (prop instanceof Map) {
-      const copy = new Map();
-      prop.forEach((value, key) => {
-        copy.set(makeCopyOfObject(key), makeCopyOfObject(value));
-      });
-      return copy;
-    }
-
-    if (prop instanceof Set) {
-      const copy = new Set();
-      prop.forEach((value) => {
-        copy.add(makeCopyOfObject(value));
-      });
-      return copy;
-    }
-
-    let arrayFromObj = Object.entries(prop);
-    for (let i = 0; i < arrayFromObj.length; i++) {
-      for (let j = 0; j <= 1; j++) {
-        if (typeof arrayFromObj[i][j] === "object") {
-          arrayFromObj[i][j] = makeCopyOfObject(arrayFromObj[i][j]);
-        }
+  if ((obj && typeof obj !== "object") || obj === null) {
+    throw new Error("Invalid argument.");
+  }
+  const arr = [];
+  for (let i = 0; i < this.length; i++) {
+    if (obj) {
+      if (callback.call(obj, this[i], i, this)) {
+        arr.push(this[i]);
+      }
+    } else {
+      if (callback.call(this, this[i], i, this)) {
+        arr.push(this[i]);
       }
     }
-    return Object.fromEntries(arrayFromObj);
   }
+  return arr;
 }
+Array.prototype.customFilter = customFilter;
 
-function createIterable(from, to) {
-  if (
-    arguments.length < 2 ||
-    to <= from ||
-    !Number.isInteger(from) ||
-    !Number.isInteger(to) ||
-    typeof from !== "number" ||
-    typeof to !== "number"
-  ) {
-    throw new Error("error");
+function bubbleSort(arr) {
+  if (!Array.isArray(arr)) {
+    throw new Error("Invalid argument.");
+  }
+  for (let i = 0; i < arr.length; i++) {
+    if (!Number.isFinite(arr[i])) {
+      throw new Error("Invalid argument.");
+    }
+  }
+  const result = [...arr];
+  let j = 0;
+  while (j < result.length) {
+    for (let i = 0; i < result.length; i++) {
+      if (result[i] > result[i + 1]) {
+        let bigger = result[i];
+        result[i] = result[i + 1];
+        result[i + 1] = bigger;
+      }
+    }
+    j++;
+  }
+  return result;
+}
+function storageWrapper(func, arr) {
+  if (!func || typeof func !== "function") {
+    throw new Error("Invalid argument.");
+  }
+  if (arr && !Array.isArray(arr)) {
+    throw new Error("Invalid argument.");
   }
 
-  return {
-    from,
-    to,
-    [Symbol.iterator]: function () {
-      return {
-        current: this.from,
-        last: this.to,
-        next() {
-          if (this.current <= this.last) {
-            return { done: false, value: this.current++ };
-          } else {
-            return { done: true };
-          }
-        },
-      };
-    },
-  };
-}
-
-function createProxy(obj) {
-  if (
-    !obj ||
-    typeof obj !== "object" ||
-    obj instanceof Map ||
-    Array.isArray(obj) ||
-    obj instanceof Set
-  ) {
-    throw new Error();
+  if (arr) {
+    return function () {
+      const result = func();
+      arr.push(result);
+      return result;
+    };
   } else {
-    return (obj = new Proxy(obj, {
-      get(target, prop) {
-        if (target[prop].hasOwnProperty("readAmount")) {
-          target[prop].readAmount = ++target[prop].readAmount;
-        } else {
-          target[prop] = { value: target[prop], readAmount: 1 };
-        }
-      },
-      set(target, prop, val) {
-        if (target.hasOwnProperty(prop)) {
-          if (typeof val === typeof target[prop].value) {
-            target[prop].value = val;
-          }
-        } else {
-          target[prop] = { value: val, readAmount: 0 };
-        }
-      },
-    }));
+    const arrayResults = [];
+    return function () {
+      const result = func();
+      arrayResults.push(result);
+      return arrayResults;
+    };
   }
 }
