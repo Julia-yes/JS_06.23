@@ -1,0 +1,32 @@
+@import "./total.scss";
+
+.header {
+  background-color: $general-color;
+  color: white;
+  padding: 10px 0;
+
+  &_links {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  &_button {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $general-dark;
+    }
+
+    &__active {
+      color: $lime;
+
+      &:hover {
+        color: $lime;
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+//colors
+$general-color: #1fbcd3;
+$general-opacity: #1fbbd325;
+$general-dark: #1894ad;
+$general_light: #c6ffff;
+$lime: #fffe68;
+$red: #d2225b;
+$green: #059396;
+$orange: #ff9048;
+$pink: #a1186b;
+$grey: #91a2c5;
+
+body {
+  font-family: "Kalam", cursive;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: $general-color;
+  position: relative;
+}
+
+.container {
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0 70px 0 30px;
+}
+
+.project {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+fieldset {
+  border: none;
+}
+
+.material-icons {
+  width: 24px;
+}

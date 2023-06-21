@@ -1,0 +1,95 @@
+@import "./total.scss";
+
+.note {
+  border: 2px solid $general-color;
+  border-radius: 15px;
+  background-color: white;
+
+  &_title {
+    color: white;
+    background-color: $general-color;
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 15px 15px 0 0;
+    border-bottom: 2px solid $general-dark;
+  }
+
+  &_empty {
+    text-align: center;
+  }
+
+  &_content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+
+    &__left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+
+  &_dateBlock {
+    display: flex;
+    opacity: 30%;
+    font-size: 14px;
+    padding-top: 20px;
+  }
+
+  &_buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  &_button {
+    cursor: pointer;
+    transition: color 0.3s;
+    color: $general-color;
+
+    &__edit,
+    &__done {
+      &:hover {
+        color: $green;
+      }
+    }
+
+    &__delete,
+    &__close {
+      &:hover {
+        color: $red;
+      }
+    }
+
+    &__disabled {
+      color: gray;
+
+      &:hover {
+        color: gray;
+      }
+    }
+
+    &__favorite {
+      &:hover {
+        color: $orange;
+      }
+    }
+  }
+
+  &_description {
+    flex-grow: 1;
+  }
+
+  &_input {
+    width: 50%;
+  }
+
+  &_textarea {
+    width: 90%;
+  }
+}

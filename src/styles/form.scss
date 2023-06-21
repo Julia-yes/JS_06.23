@@ -1,0 +1,129 @@
+@import "./total.scss";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+
+  &_block {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  &_span {
+    width: 30%;
+  }
+
+  &_input {
+    flex-grow: 1;
+    outline: none;
+    border: 2px solid $general-dark;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+    padding: 5px;
+
+    &:focus {
+      border-color: $lime;
+    }
+
+    &__description {
+      min-height: 50px;
+    }
+
+    &__validationError {
+      border-color: $red;
+
+      &:focus {
+        border-color: $red;
+      }
+    }
+  }
+
+  &_button {
+    background-color: $lime;
+    color: $general-dark;
+    border: 2px solid $general-dark;
+    padding: 5px 10px;
+    border-radius: 10px;
+    width: fit-content;
+    cursor: pointer;
+    transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+    margin: 0 auto;
+
+    &:hover {
+      color: $lime;
+      background-color: $general-dark;
+      border-color: $lime;
+    }
+
+    &__disabled {
+      color: white;
+      background-color: gray;
+      border-color: white;
+
+      &:hover {
+        color: white;
+        background-color: gray;
+        border-color: white;
+      }
+    }
+  }
+
+  &_radiobuttons {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  &_label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 20px;
+      height: 10px;
+      border: 2px solid $general-dark;
+      border-radius: 5px;
+    }
+
+    &__green {
+      &::before {
+        background-color: $green;
+      }
+    }
+
+    &__orange {
+      &::before {
+        background-color: $orange;
+      }
+    }
+
+    &__grey {
+      &::before {
+        background-color: $grey;
+      }
+    }
+
+    &__pink {
+      &::before {
+        background-color: $pink;
+      }
+    }
+  }
+
+  &_radio {
+    display: flex;
+    align-items: center;
+    input {
+      cursor: pointer;
+    }
+  }
+}

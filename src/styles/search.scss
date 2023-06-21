@@ -1,0 +1,27 @@
+@import "./total.scss";
+
+.search {
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 5px 10px;
+  width: 50%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid $general-dark;
+  border-radius: 15px;
+
+  &_title {
+    margin: 0;
+  }
+
+  &_input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    text-align: center;
+    color: $general-dark;
+
+  }
+}

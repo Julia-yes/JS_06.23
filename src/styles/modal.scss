@@ -1,0 +1,79 @@
+@import "./total.scss";
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $general-color;
+  color: white;
+  width: 30%;
+  border: 2px solid $general-dark;
+  border-radius: 15px;
+
+  &_close {
+    display: none;
+  }
+
+  &_header {
+    background-color: $general-dark;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 2px solid $lime;
+    border-radius: 15px 15px 0 0;
+  }
+
+  &_title {
+    margin: 0;
+  }
+
+  &_button {
+    cursor: pointer;
+    padding: 10px;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $red;
+    }
+
+    &__yes, &__no {
+      font-size: 18px;
+      font-family: "Kalam", cursive;
+      font-weight: 700;
+      color: $red;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      transition: border-color 0.3s;
+      padding: 5px 10px;
+
+      &:hover {
+        border-color: white;
+        color: $red;
+      }
+    }
+
+    &__yes {
+      color: $lime;
+      &:hover {
+        border-color: white;
+        color: $lime;
+      }
+    }
+  }
+
+  &_buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    padding-bottom: 10px;
+  }
+
+  &_content {
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+  }
+}

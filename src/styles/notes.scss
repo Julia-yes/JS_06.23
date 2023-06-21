@@ -1,0 +1,39 @@
+@import "./total.scss";
+
+.notes {
+  &_area {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    height: calc(100vh - 170px);
+    border: 2px solid $general-color;
+    border-radius: 15px;
+    overflow-y: scroll;
+    background-color: $general-opacity;
+    
+    &::-webkit-scrollbar-track {
+      padding: 2px 0;
+      border-radius: 3px;
+      background-color: transparent;
+      margin: 10px;
+    }
+
+    &::-webkit-scrollbar {
+      border-radius: 3px;
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 3px;
+      background-color: $general-color;
+    }
+  }
+
+  &_title {
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+  }
+}
